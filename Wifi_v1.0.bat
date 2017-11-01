@@ -1,5 +1,5 @@
 @ECHO OFF
-@TITLE ÎŞÏßÍøÂç¹²Ïí¹¤¾ß
+@TITLE æ— çº¿ç½‘ç»œå…±äº«å·¥å…·
 
 REM MIT License, owned by thebuster000@gmail.com. Free to all
 
@@ -8,16 +8,16 @@ if "%1"=="/?" set helpParameters=1
 if "%1"=="help" set helpParameters=1
 if "%1"=="-help" set helpParameters=1
 if %helpParameters% equ 1 (
-	echo ÎŞÏßÍøÂç¹²Ïí¹¤¾ß
-	echo ÓÃ·¨
+	echo æ— çº¿ç½‘ç»œå…±äº«å·¥å…·
+	echo ç”¨æ³•
 		echo    %~n0 [ create ^| start ^| stop ^| view ^| settings ^| help]
 	exit /b 0
 )
 
 net session >nul 2>&1
 if not "%errorLevel%" == "0" (
-	echo ±¾¹¤¾ßĞèÒª¹ÜÀíÔ±È¨ÏŞ£¬½«×Ô¶¯ÇĞ»»µ½¹ÜÀíÔ±È¨ÏŞ£¬Èç¹ûµ¯³öÓÃ»§È¨ÏŞ¿ØÖÆ¶Ô»°¿ò£¬
-	echo Çëµã»÷¡¾ÊÇ¡¿°´Å¥ÒÔ¼ÌĞøÔËĞĞ£¬·ñÔò²»ÄÜÕı³£¹¤×÷¡£
+	echo æœ¬å·¥å…·éœ€è¦ç®¡ç†å‘˜æƒé™ï¼Œå°†è‡ªåŠ¨åˆ‡æ¢åˆ°ç®¡ç†å‘˜æƒé™ï¼Œå¦‚æœå¼¹å‡ºç”¨æˆ·æƒé™æ§åˆ¶å¯¹è¯æ¡†ï¼Œ
+	echo è¯·ç‚¹å‡»ã€æ˜¯ã€‘æŒ‰é’®ä»¥ç»§ç»­è¿è¡Œï¼Œå¦åˆ™ä¸èƒ½æ­£å¸¸å·¥ä½œã€‚
 	echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
 	echo UAC.ShellExecute "%~s0", "%*", "", "runas", 1 >> "%temp%\getadmin.vbs"
 	
@@ -33,53 +33,53 @@ if "%1"=="settings" goto changeSettingsMINI
 
 :pre-roll
 cls
-echo ¼ì²éÎŞÏßÍø¿¨ÊÇ·ñÖ§³ÖĞéÄâWIFIÈÈµã...
+echo æ£€æŸ¥æ— çº¿ç½‘å¡æ˜¯å¦æ”¯æŒè™šæ‹ŸWIFIçƒ­ç‚¹...
 set supported=0
-netsh wlan show drive | find "Ö§³ÖµÄ³ĞÔØÍøÂç" | find "ÊÇ"
+netsh wlan show drive | find "æ”¯æŒçš„æ‰¿è½½ç½‘ç»œ" | find "æ˜¯"
 if %errorlevel%==0 set supported=1
 
 if %supported%==1 (
-	set sup=ÊÇ
+	set sup=æ˜¯
 ) else (
-	set sup=·ñ
+	set sup=å¦
 )
 
 set stateOnOff=0
-netsh wlan show hostednetwork | find "×´Ì¬" | find "ÒÑÆô¶¯"
+netsh wlan show hostednetwork | find "çŠ¶æ€" | find "å·²å¯åŠ¨"
 if %errorlevel%==0 set stateOnOff=1
 if %stateOnOff%==1 (
-	set S=Æô¶¯
+	set S=å¯åŠ¨
 ) else (
-	set S=¹Ø±Õ
+	set S=å…³é—­
 )
 
 set hostednetworkMode=0
-netsh wlan show hostednetwork | find "Ä£Ê½" | find "ÒÑÆôÓÃ"
+netsh wlan show hostednetwork | find "æ¨¡å¼" | find "å·²å¯ç”¨"
 if %errorlevel%==0 (
-	set s2=ÆôÓÃ
+	set s2=å¯ç”¨
 ) else (
-	set s2=½ûÓÃ
+	set s2=ç¦ç”¨
 )
 cls
 :menu
-echo ©³©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©·
-echo ©§ÎŞÏßÍøÂç¹²Ïí¹¤¾ßv1.0©§
-echo ©Ç©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©Ï
-echo ©§ 1. ´´½¨ĞéÄâWIFI    ©§
-echo ©§ 2. Æô¶¯ĞéÄâWIFI    ©§
-echo ©§ 3. Í£Ö¹ĞéÄâWIFI    ©§
-echo ©§ 4. ²é¿´WIFI×´Ì¬    ©§
-echo ©§ 5. ²é¿´WIFIÃÜÂë    ©§
-echo ©§ 6. ¸ü¸ÄWIFIÉèÖÃ    ©§
-echo ©§ 7. ¹²ÏíWIFIÁ¬½Ó    ©§
-echo ©§ 8. ÍË³ö            ©§
-echo ©Ç©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©Ï
-echo ©§ Ö§³Ö³ĞÔØÍøÂç£º%sup%   ©§
-echo ©§ ³ĞÔØÍøÂçÄ£Ê½£º%s2% ©§
-echo ©§ ³ĞÔØÍøÂç×´Ì¬£º%S% ©§
-echo ©»©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¿
+echo â”â”â”â”â”â”â”â”â”â”â”â”“
+echo â”ƒæ— çº¿ç½‘ç»œå…±äº«å·¥å…·v1.0â”ƒ
+echo â”£â”â”â”â”â”â”â”â”â”â”â”«
+echo â”ƒ 1. åˆ›å»ºè™šæ‹ŸWIFI    â”ƒ
+echo â”ƒ 2. å¯åŠ¨è™šæ‹ŸWIFI    â”ƒ
+echo â”ƒ 3. åœæ­¢è™šæ‹ŸWIFI    â”ƒ
+echo â”ƒ 4. æŸ¥çœ‹WIFIçŠ¶æ€    â”ƒ
+echo â”ƒ 5. æŸ¥çœ‹WIFIå¯†ç     â”ƒ
+echo â”ƒ 6. æ›´æ”¹WIFIè®¾ç½®    â”ƒ
+echo â”ƒ 7. å…±äº«WIFIè¿æ¥    â”ƒ
+echo â”ƒ 8. é€€å‡º            â”ƒ
+echo â”£â”â”â”â”â”â”â”â”â”â”â”«
+echo â”ƒ æ”¯æŒæ‰¿è½½ç½‘ç»œï¼š%sup%   â”ƒ
+echo â”ƒ æ‰¿è½½ç½‘ç»œæ¨¡å¼ï¼š%s2% â”ƒ
+echo â”ƒ æ‰¿è½½ç½‘ç»œçŠ¶æ€ï¼š%S% â”ƒ
+echo â”—â”â”â”â”â”â”â”â”â”â”â”›
 echo.
-set /p mid=ÇëÑ¡Ôñ 1-8 µÄÃüÁî£¬°´Enter¼ÌĞø£º
+set /p mid=è¯·é€‰æ‹© 1-8 çš„å‘½ä»¤ï¼ŒæŒ‰Enterç»§ç»­ï¼š
 if "%mid%"=="1" goto create
 if "%mid%"=="2" goto start
 if "%mid%"=="3" goto stop
@@ -88,22 +88,22 @@ if "%mid%"=="5" goto viewPWD
 if "%mid%"=="6" goto changeSettings
 if "%mid%"=="7" goto share
 if "%mid%"=="8" goto end
-echo ´íÎó£ºÑ¡ÔñµÄÃüÁîÎŞĞ§£¬ÇëÖØÊÔ¡£
+echo é”™è¯¯ï¼šé€‰æ‹©çš„å‘½ä»¤æ— æ•ˆï¼Œè¯·é‡è¯•ã€‚
 goto menu
 
 :create
 cls
 if "%_name%"=="" set _name=WLAN_Hotspot
-set /p _name=ÇëÊäÈëWIFIÈÈµãµÄÃû×Ö£¨Ä¬ÈÏ: %_name%£©£º
-set /p _password=ÇëÊäÈëWIFIÈÈµãµÄÃÜÂë£¨±ØĞè£¬ÃÜÂë³¤¶ÈÎª 8~63 ×Ö·û£©£º
+set /p _name=è¯·è¾“å…¥WIFIçƒ­ç‚¹çš„åå­—ï¼ˆé»˜è®¤: %_name%ï¼‰ï¼š
+set /p _password=è¯·è¾“å…¥WIFIçƒ­ç‚¹çš„å¯†ç ï¼ˆå¿…éœ€ï¼Œå¯†ç é•¿åº¦ä¸º 8~63 å­—ç¬¦ï¼‰ï¼š
 netsh wlan set hostednetwork mode=allow ssid=%_name% key=%_password%
-if "%errorlevel%"=="0" echo ÅäÖÃWIFI³É¹¦
+if "%errorlevel%"=="0" echo é…ç½®WIFIæˆåŠŸ
 netsh wlan start hostednetwork
 if "%errorlevel%"=="0" (
-	echo ĞéÄâWIFIÈÈµãÒÑÆô¶¯
+	echo è™šæ‹ŸWIFIçƒ­ç‚¹å·²å¯åŠ¨
 ) else (
-	echo ´íÎó£º³¢ÊÔÆô¶¯WifiÈÈµãÊ±³ö´í
-	echo ErrorLevelÎª£º%errorlevel%
+	echo é”™è¯¯ï¼šå°è¯•å¯åŠ¨Wifiçƒ­ç‚¹æ—¶å‡ºé”™
+	echo ErrorLevelä¸ºï¼š%errorlevel%
 )
 
 goto end
@@ -111,14 +111,14 @@ goto end
 :start
 cls
 netsh wlan start hostednetwork
-echo WIFIÈÈµãÒÑÆô¶¯
+echo WIFIçƒ­ç‚¹å·²å¯åŠ¨
 goto end
 
 :stop
 cls
-echo ÕıÔÚÍ£Ö¹ÈÈµã
+echo æ­£åœ¨åœæ­¢çƒ­ç‚¹
 netsh wlan stop hostednetwork
-echo ÈÈµãÒÑÍ£Ö¹
+echo çƒ­ç‚¹å·²åœæ­¢
 goto end
 
 :viewConnect
@@ -135,24 +135,24 @@ goto end
 cls
 net session >nul 2>&1
 if not "%errorLevel%" == "0" (
-	echo ±¾¹¤¾ßĞèÒª¹ÜÀíÔ±È¨ÏŞ£¬½«×Ô¶¯ÇĞ»»µ½¹ÜÀíÔ±È¨ÏŞ£¬Èç¹ûµ¯³öÓÃ»§È¨ÏŞ¿ØÖÆ¶Ô»°¿ò£¬
-	echo Çëµã»÷¡¾ÊÇ¡¿°´Å¥ÒÔ¼ÌĞøÔËĞĞ£¬·ñÔò²»ÄÜÕı³£¹¤×÷¡£
+	echo æœ¬å·¥å…·éœ€è¦ç®¡ç†å‘˜æƒé™ï¼Œå°†è‡ªåŠ¨åˆ‡æ¢åˆ°ç®¡ç†å‘˜æƒé™ï¼Œå¦‚æœå¼¹å‡ºç”¨æˆ·æƒé™æ§åˆ¶å¯¹è¯æ¡†ï¼Œ
+	echo è¯·ç‚¹å‡»ã€æ˜¯ã€‘æŒ‰é’®ä»¥ç»§ç»­è¿è¡Œï¼Œå¦åˆ™ä¸èƒ½æ­£å¸¸å·¥ä½œã€‚
 	echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
 	echo UAC.ShellExecute "%~s0", "%*", "", "runas", 1 >> "%temp%\getadmin.vbs"
 	
 	"%temp%\getadmin.vbs"
 	exit /b 2
 )
-echo ©³©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©·
-echo ©§    WIFIÈÈµãÉèÖÃ    ©§
-echo ©Ç©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©Ï
-echo ©§  1. ¸ü¸ÄWIFIÃÜÂë   ©§
-echo ©§  2. ¸ü¸ÄWIFIÃû³Æ   ©§
-echo ©§  3. É¾³ı/½ûÓÃÈÈµã  ©§
-echo ©§  4. ÆôÓÃWIFIÈÈµã   ©§
-echo ©§  5. ·µ»Ø           ©§
-echo ©»©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¿
-set /p mid2=ÇëÑ¡Ôñ 1-4 µÄÃüÁî£¬°´Enter¼ÌĞø£º
+echo â”â”â”â”â”â”â”â”â”â”â”â”“
+echo â”ƒ    WIFIçƒ­ç‚¹è®¾ç½®    â”ƒ
+echo â”£â”â”â”â”â”â”â”â”â”â”â”«
+echo â”ƒ  1. æ›´æ”¹WIFIå¯†ç    â”ƒ
+echo â”ƒ  2. æ›´æ”¹WIFIåç§°   â”ƒ
+echo â”ƒ  3. åˆ é™¤/ç¦ç”¨çƒ­ç‚¹  â”ƒ
+echo â”ƒ  4. å¯ç”¨WIFIçƒ­ç‚¹   â”ƒ
+echo â”ƒ  5. è¿”å›           â”ƒ
+echo â”—â”â”â”â”â”â”â”â”â”â”â”›
+set /p mid2=è¯·é€‰æ‹© 1-4 çš„å‘½ä»¤ï¼ŒæŒ‰Enterç»§ç»­ï¼š
 if "%mid2%"=="1" goto settingsS1
 if "%mid2%"=="2" goto settingsS2
 if "%mid2%"=="3" goto settingsS3
@@ -161,31 +161,31 @@ if "%mid2%"=="5" goto menu
 
 :settingsS1
 cls
-set /p @pwd=ÇëÊäÈëĞÂWIFIÈÈµãÃÜÂë£º
+set /p @pwd=è¯·è¾“å…¥æ–°WIFIçƒ­ç‚¹å¯†ç ï¼š
 netsh wlan set hostednetwork key=%@pwd%
 if %errorlevel%==0 (
-	echo ¸ü¸ÄÍê³É
+	echo æ›´æ”¹å®Œæˆ
 ) else ( 
-	echo ´íÎó£º¸ü¸ÄÊ§°Ü£¬Î´Öª´íÎó
+	echo é”™è¯¯ï¼šæ›´æ”¹å¤±è´¥ï¼ŒæœªçŸ¥é”™è¯¯
 	echo Errorlevel: %errorlevel%
 )
 goto end
 
 :settingsS2
 cls
-set /p @ssid=ÇëÊäÈëĞÂWIFIÈÈµãÃû³Æ£º
+set /p @ssid=è¯·è¾“å…¥æ–°WIFIçƒ­ç‚¹åç§°ï¼š
 netsh wlan set hostednetwork ssid=%@ssid%
 if %errorlevel%==0 (
-	echo ¸ü¸ÄÍê³É
+	echo æ›´æ”¹å®Œæˆ
 ) else ( 
-	echo ´íÎó£º¸ü¸ÄÊ§°Ü£¬Î´Öª´íÎó
+	echo é”™è¯¯ï¼šæ›´æ”¹å¤±è´¥ï¼ŒæœªçŸ¥é”™è¯¯
 	echo Errorlevel: %errorlevel%
 )
 goto end
 
 :settingsS3
 cls
-set /p sure=ÄãÈ·¶¨ÒªÉ¾³ı/½ûÓÃÈÈµã£¿[Y/n]:
+set /p sure=ä½ ç¡®å®šè¦åˆ é™¤/ç¦ç”¨çƒ­ç‚¹ï¼Ÿ[Y/n]:
 if %sure%==Y set sure1=1
 if %sure%==y set sure1=1
 if %sure%==N set sure1=0
@@ -200,20 +200,20 @@ if %sure1%==1 (
 :settingsS3_y
 netsh wlan stop hostednetwork
 netsh wlan set hostednetwork mode=disallow
-echo ³ĞÔØÍøÂçÒÑ½ûÖ¹
+echo æ‰¿è½½ç½‘ç»œå·²ç¦æ­¢
 
 goto end
 
 :settingsS3_n
 cls
-echo ÒÑÖÕÖ¹.
+echo å·²ç»ˆæ­¢.
 goto menu
 
 :settingsS4
 cls
-echo ÕıÔÚÆôÓÃ³ĞÔØÍøÂç
+echo æ­£åœ¨å¯ç”¨æ‰¿è½½ç½‘ç»œ
 netsh wlan set hostednetwork mode=allow
-echo ÒÑÆôÓÃ
+echo å·²å¯ç”¨
 goto end
 
 :share
@@ -270,42 +270,42 @@ exit
 :createMINI
 REM if you want to use this for other language, you should change below tags.
 REM CP 936 = Chinese, 437 = English
-echo ¼ì²éÎŞÏßÍø¿¨ÊÇ·ñÖ§³ÖĞéÄâWIFIÈÈµã...
+echo æ£€æŸ¥æ— çº¿ç½‘å¡æ˜¯å¦æ”¯æŒè™šæ‹ŸWIFIçƒ­ç‚¹...
 set supported=0
-netsh wlan show drive | find "Ö§³ÖµÄ³ĞÔØÍøÂç" | find "ÊÇ"
+netsh wlan show drive | find "æ”¯æŒçš„æ‰¿è½½ç½‘ç»œ" | find "æ˜¯"
 if %errorlevel%==0 set supported=1
 netsh wlan show drive | find "Hosted network supported" | find "Yes"
 if %errorlevel%==0 set supported=1
 if %supported% equ 1 (
-  echo ÄúµÄÍø¿¨Ö§³Ö³ĞÔØÍøÂç
-  echo Çë¸ù¾İºóĞøÖ¸ÁîÍê³ÉÎŞÏßWIFIµÄÅäÖÃ¡£
+  echo æ‚¨çš„ç½‘å¡æ”¯æŒæ‰¿è½½ç½‘ç»œ
+  echo è¯·æ ¹æ®åç»­æŒ‡ä»¤å®Œæˆæ— çº¿WIFIçš„é…ç½®ã€‚
 ) else (
-  echo ·¢ÏÖÄúµÄÍø¿¨²»Ö§³Ö³ĞÔØÍøÂç£¬ÍË³öÖĞ
+  echo å‘ç°æ‚¨çš„ç½‘å¡ä¸æ”¯æŒæ‰¿è½½ç½‘ç»œï¼Œé€€å‡ºä¸­
   goto end
 )
 
 if "%_name%"=="" set _name=wlan
-set /p _name=ÇëÊäÈëWIFIÈÈµãµÄÃû×Ö£¨Ä¬ÈÏ: %_name%£©£º
-set /p _password=ÇëÊäÈëWIFIÈÈµãµÄÃÜÂë£¨±ØĞè£¬ÃÜÂë³¤¶ÈÎª 8~63 ×Ö·û£©£º
+set /p _name=è¯·è¾“å…¥WIFIçƒ­ç‚¹çš„åå­—ï¼ˆé»˜è®¤: %_name%ï¼‰ï¼š
+set /p _password=è¯·è¾“å…¥WIFIçƒ­ç‚¹çš„å¯†ç ï¼ˆå¿…éœ€ï¼Œå¯†ç é•¿åº¦ä¸º 8~63 å­—ç¬¦ï¼‰ï¼š
 netsh wlan set hostednetwork mode=allow ssid=%_name% key=%_password%
-if "%errorlevel%"=="0" echo ÅäÖÃWIFI³É¹¦¡£
+if "%errorlevel%"=="0" echo é…ç½®WIFIæˆåŠŸã€‚
 netsh wlan start hostednetwork
 if "%errorlevel%"=="0" (
-  echo Æô¶¯WIFI³É¹¦
-  echo Èç¹ûĞèÒª¹²Ïí¸øÊÖ»ú»òÕßÆäËûÈËÉÏÍø£¬ÇëÖØĞÂÔËĞĞ²¢Ñ¡Ôñ¹²ÏíWIFIÁ¬½Ó¡£
+  echo å¯åŠ¨WIFIæˆåŠŸ
+  echo å¦‚æœéœ€è¦å…±äº«ç»™æ‰‹æœºæˆ–è€…å…¶ä»–äººä¸Šç½‘ï¼Œè¯·é‡æ–°è¿è¡Œå¹¶é€‰æ‹©å…±äº«WIFIè¿æ¥ã€‚
 ) else (
-  echo ´íÎó£ºÆô¶¯WIFIÈÈµãÊ§°Ü¡£
+  echo é”™è¯¯ï¼šå¯åŠ¨WIFIçƒ­ç‚¹å¤±è´¥ã€‚
 )
 goto end
 
 :startMINI
 netsh wlan start hostednetwork
-echo ÈÈµãÒÑÆô¶¯
+echo çƒ­ç‚¹å·²å¯åŠ¨
 goto end
 
 :stopMINI
 netsh wlan stop hostednetwork
-echo ÈÈµãÒÑ¹Ø±Õ
+echo çƒ­ç‚¹å·²å…³é—­
 goto end
 
 :viewMINI
@@ -314,16 +314,16 @@ goto end
 
 :changeSettingsMINI
 cls
-echo ©³©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©·
-echo ©§    WIFIÈÈµãÉèÖÃ    ©§
-echo ©Ç©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©Ï
-echo ©§  1. ¸ü¸ÄWIFIÃÜÂë   ©§
-echo ©§  2. ¸ü¸ÄWIFIÃû³Æ   ©§
-echo ©§  3. É¾³ı/½ûÓÃÈÈµã  ©§
-echo ©§  4. ÆôÓÃWIFIÈÈµã   ©§
-echo ©§  5. ·µ»Ø           ©§
-echo ©»©¥©¥©¥©¥©¥©¥©¥©¥©¥©¥©¿
-set /p mid2=ÇëÑ¡Ôñ 1-5 µÄÃüÁî£¬°´Enter¼ÌĞø£º
+echo â”â”â”â”â”â”â”â”â”â”â”â”“
+echo â”ƒ    WIFIçƒ­ç‚¹è®¾ç½®    â”ƒ
+echo â”£â”â”â”â”â”â”â”â”â”â”â”«
+echo â”ƒ  1. æ›´æ”¹WIFIå¯†ç    â”ƒ
+echo â”ƒ  2. æ›´æ”¹WIFIåç§°   â”ƒ
+echo â”ƒ  3. åˆ é™¤/ç¦ç”¨çƒ­ç‚¹  â”ƒ
+echo â”ƒ  4. å¯ç”¨WIFIçƒ­ç‚¹   â”ƒ
+echo â”ƒ  5. è¿”å›           â”ƒ
+echo â”—â”â”â”â”â”â”â”â”â”â”â”›
+set /p mid2=è¯·é€‰æ‹© 1-5 çš„å‘½ä»¤ï¼ŒæŒ‰Enterç»§ç»­ï¼š
 if "%mid2%"=="1" goto settingsS1
 if "%mid2%"=="2" goto settingsS2
 if "%mid2%"=="3" goto settingsS3
