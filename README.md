@@ -1,45 +1,54 @@
-# wifi_hotspot
-
-一个<del>基佬</del>正常人做的WIFI热点创建程序 （虽然部分代码有点像Kingron/wifi的代码）
-这是一个基于Kingron/wifi的程序做的改良版/修改版，现在是版本1.0，暂时只支持简体中文版的Windows
-作者的程序<a href="https://github.com/kingron/wifi">Kingron/wifi</a>
+# Wifi热点编辑程序
+某个<del>爱抄袭的</del>人做出的<del>绝壁正常的</del>Wifi热点创建程序
+<br>
+此程序是绿色的，无毒的。没有广告，没有任何掉你胃口的东西。
+它小，但是它强大，快速！ （差不多也就10KB的Batch代码）
 
 <hr>
 
-Q&A
+Q&A:
 
-Q: 这个程序是跨平台的吗？
+Q: 你有妹妹吗？
 <br>
-A: 不，这个程序<b>不是跨平台的</b> 这个程序仅支持Windows
+A: 没有，如果你有的话就恭喜你 还有 德国骨科 <img src="https://static.mengniang.org/common/7/71/%E6%BB%91%E7%A8%BD%E8%A1%A8%E6%83%85.jpg" alt="（滑稽）" height="23" width="23">
+
 <br>
+
+Q: 你愿意嫁给我码？
 <br>
-Q: 这个代码很像<a href="https://github.com/kingron/wifi">Kingron/wifi</a>的代码，你是不是抄袭的?
+A: 不存在的
+
 <br>
-A: 都说了这是<a href="https://github.com/kingron/wifi">Kingron/wifi</a>的改良版/修改版，部分代码是我改的 本来想弄成EXE程序的 就是现在出了一点小问题
+
+Q: 这程序是跨平台的吗？
 <br>
+A: 这<b>不是</b>跨平台的程序 只支持Windows。因为里面的指令集只支持Windows，还有我并不知道其他系统支不支持VBS脚本
+
 <br>
-Q: 你弄得代码侵权了，我怎么让你删除啊？
+
+Q: 支持多语言吗？
 <br>
-A: 如果我侵权，请你在Issues那里留个 “你的代码是侵权的” 类似的东西 1个月内我会马上删除
+A: 现在暂时只支持Windows的简体中文
+
 <br>
+
+Q: 现在支持什么Windows版本？
 <br>
-Q: 说了半天，刀枪直入，你TM到底改良了什么
+A: Windows XP以及以上 （前提是你的电脑必须支持无线网络，承载网络模式，有Certutil和Netsh）
+
 <br>
-A: 改良的东西有
-  <br>
-  <br>
-      改良了使用命令行指令的时候使用其他代码，不使用主代码。 比如 cmd: wifi.bat create
-      <br>
-      在这个情况下不使用批处理标签create，而是使用另外一个叫createMINI的批处理标签
+
+Q: 我可以修改或编辑代码吗，我可以作用于商业用途吗？
 <br>
+A: 你可以修改代码，你不能用于商业用途 否则后果自负
+
 <br>
-      改良了share.vbs是与主程序分开的，以免share.vbs被意外删除
+
+Q: 你的代码是抄袭的！
 <br>
-<br>
-      添加了状态栏
-<br>
-<br>
-      删除了更改密码选项，使用更改设置替代 里面不仅包含更改密码，还可以改其他东西
-<br>
-<br>
-其他的你应该能在Release 1.0那里看到 （可能）
+A: 我知道... 等我开发一个新的GUI 我就不用<a href="https://github.com/kingron/wifi">Kingron/Wifi</a>的代码了 （还在开发中...）
+开发完了后我就会把关于有Kingron的代码给删了，自己重新开发
+
+<hr>
+
+<b>注意：请小心使用这个程序，你打开了热点也就等于你的电脑和网络路由器桥接了，别让陌生人进入热点 因为别人可能会直接进网络路由器盗取密码 大部分的路由器登录都是默认的Admin之类的，所以请把热点密码设置长一点 密码最长可以到63个字符。小心使用 严禁滥用。</b>
