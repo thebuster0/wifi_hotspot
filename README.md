@@ -46,7 +46,7 @@ A: 你可以修改代码，你不能用于商业用途 否则后果自负
 
 Q: 你的代码是抄袭的！
 <br>
-A: 我知道... 等我开发一个新的GUI 我就不用<a href="https://github.com/kingron/wifi">Kingron/Wifi</a>的代码了 （还在开发中...）
+A: 我知道... 等我使用一个新的GUI 我就不用<a href="https://github.com/kingron/wifi">Kingron/Wifi</a>的代码了 （还在开发中...）
 开发完了后我就会把关于有Kingron的代码给删了，自己重新开发
 
 <hr>
