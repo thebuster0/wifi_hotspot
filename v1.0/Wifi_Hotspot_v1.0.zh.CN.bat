@@ -1,7 +1,7 @@
 @ECHO OFF
 @TITLE Wifi热点编辑工具 v1.0
 
-REM MIT Licence
+REM Apache License
 
 set help=0
 if "%1" == "/?" ( set help=1 )
@@ -369,8 +369,8 @@ echo        └—————————————┘
 set /p sel5=您确定要删除/禁用Wifi热点吗？[Y/n]:
 if "%sel5%"=="Y" goto DeleteHotspot-Afirmative
 if "%sel5%"=="y" goto DeleteHotspot-Afirmative
-if "%sel5%"=="N" goto MainMenu
-if "%sel5%"=="n" goto MainMenu
+if "%sel5%"=="N" goto pre-roll-3
+if "%sel5%"=="n" goto pre-roll-3
 
 :DeleteHotspot-Afirmative
 netsh wlan set hostednetwork mode=disallow
@@ -385,7 +385,7 @@ echo        │                          │
 echo        └—————————————┘
 echo 按下任意键来返回菜单
 pause > nul
-goto MainMenu
+goto pre-roll-3
 
 :EnableHotspot
 cls
@@ -400,8 +400,8 @@ echo        └—————————————┘
 set /p sel6=您确定要启用Wifi热点吗？[Y/n]:
 if "%sel6%"=="Y" goto EnableHotspot-Afirmative
 if "%sel6%"=="y" goto EnableHotspot-Afirmative
-if "%sel6%"=="N" goto MainMenu
-if "%sel6%"=="n" goto MainMenu
+if "%sel6%"=="N" goto pre-roll-3
+if "%sel6%"=="n" goto pre-roll-3
 cls
 
 :EnableHotspot-Afirmative
@@ -417,7 +417,7 @@ echo        │                          │
 echo        └—————————————┘
 echo 按下任意键来返回菜单
 pause > nul
-goto MainMenu
+goto pre-roll-3
 
 :share
 mode con: cols=82 lines=25
@@ -506,5 +506,5 @@ pause
 exit
 
 REM total lines: 510
-REM total character include spaces: 15783
+REM total character include spaces: 15798
 REM Not Bad :/
