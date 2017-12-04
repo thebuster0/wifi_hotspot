@@ -1,7 +1,5 @@
 @ECHO OFF
-@TITLE Wifi热点编辑工具 v1.0
-
-REM MIT Licence
+@TITLE Wifi热点编辑工具 v1.1
 
 set help=0
 if "%1" == "/?" ( set help=1 )
@@ -101,7 +99,7 @@ cls
 echo.
 echo.
 echo        ┌—————————————┐
-echo        │  Wifi热点编辑工具 v1.1                    │
+echo        │  Wifi热点编辑工具 v1.1   │
 echo        │			   │
 echo        │ 1 创建Wifi热点           │
 echo        │ 2 启动Wifi热点           │
@@ -109,8 +107,7 @@ echo        │ 3 停止Wifi热点           │
 echo        │ 4 查看Wifi热点状态	   │
 echo        │ 5 查看Wifi热点密码	   │
 echo        │ 6 更改Wifi热点设置       │
-echo        │ 7 共享Wifi连接	   │
-echo        │ 8 退出                   │
+echo        │ 7 退出                   │
 echo        └—————————————┘
 echo           ┌——————————┐
 echo           │        状态：      │
@@ -119,15 +116,14 @@ echo           │ 承载网络模式：%s2% │
 echo           │ 承载网络状态：%S% │
 echo           └——————————┘
 
-set /p sel1=请选择 1-8 的命令，按Enter继续：
+set /p sel1=请选择 1-7 的命令，按Enter继续：
 if "%sel1%"=="1" goto create
 if "%sel1%"=="2" goto start
 if "%sel1%"=="3" goto stop
 if "%sel1%"=="4" goto viewConnect
 if "%sel1%"=="5" goto viewPWD
 if "%sel1%"=="6" goto changeSettings
-if "%sel1%"=="7" goto share
-if "%sel1%"=="8" goto end
+if "%sel1%"=="7" goto end
 
 echo 错误：未知的选择
 echo 按下任意键来重新选择
@@ -305,6 +301,12 @@ if "%sel3%"=="y" goto ChangePWD-Afirmative
 if "%sel3%"=="N" goto MainMenu
 if "%sel3%"=="n" goto MainMenu
 
+echo 错误：未知的选择
+echo 按下任意键来重新选择
+pause > nul
+cls
+goto ChangePWD
+
 :ChangePWD-Afirmative
 netsh wlan set hostednetwork key=%NewKEY%
 cls
@@ -340,6 +342,13 @@ if "%sel4%"=="y" goto ChangeSSID-Afirmative
 if "%sel4%"=="N" goto MainMenu
 if "%sel4%"=="n" goto MainMenu
 
+echo 错误：未知的选择
+echo 按下任意键来重新选择
+pause > nul
+cls
+goto ChangeSSID
+
+
 :ChangeSSID-Afirmative
 netsh wlan set hostednetwork key=%NewKEY%
 cls
@@ -372,7 +381,15 @@ if "%sel5%"=="y" goto DeleteHotspot-Afirmative
 if "%sel5%"=="N" goto MainMenu
 if "%sel5%"=="n" goto MainMenu
 
+echo 错误：未知的选择
+echo 按下任意键来重新选择
+pause > nul
+cls
+goto DeleteHotspot
+
 :DeleteHotspot-Afirmative
+cls
+netsh wlan stop hostednetwork
 netsh wlan set hostednetwork mode=disallow
 color 2F
 cls
@@ -385,7 +402,7 @@ echo        │                          │
 echo        └—————————————┘
 echo 按下任意键来返回菜单
 pause > nul
-goto MainMenu
+goto pre-roll-3
 
 :EnableHotspot
 cls
@@ -402,7 +419,12 @@ if "%sel6%"=="Y" goto EnableHotspot-Afirmative
 if "%sel6%"=="y" goto EnableHotspot-Afirmative
 if "%sel6%"=="N" goto MainMenu
 if "%sel6%"=="n" goto MainMenu
+echo 错误：未知的选择
+echo 按下任意键来重新选择
+pause > nul
 cls
+goto EnableHotspot
+
 
 :EnableHotspot-Afirmative
 netsh wlan set hostednetwork mode=allow
@@ -417,9 +439,10 @@ echo        │                          │
 echo        └—————————————┘
 echo 按下任意键来返回菜单
 pause > nul
-goto MainMenu
+goto pre-roll-3
 
 :end
+pause
 set help=
 set SupportAD-Hoc=
 set ad-hoc=
@@ -440,20 +463,17 @@ color
 if exist "%temp%\getadmin.vbs" ( del "%temp%\getadmin.vbs" )
 if EXIST "%~dp0\share.vbs" ( del "%~dp0\share.vbs" )
 if EXIST "%~dp0\share.enc" ( del "%~dp0\share.enc" )
-pause
 exit
 
 :startMINI
 netsh wlan start hostednetwork > nul
 echo Wifi热点已启动
-pause
-exit
+goto end
 
 :stopMINI
 netsh wlan stop hostednetwork > nul
 echo Wifi热点已关闭
-pause
-exit
+goto end
 
 :viewConnectMINI
 netsh wlan show hostednetwork
@@ -498,10 +518,7 @@ if %errorlevel%==0 (
 	echo        └—————————————┘
 	echo 记得在控制面板 --^> 查看网络状态和任务 --^> 更改适配器设置 --^> 右键 “无线网络连接” --^> 属性 --^> 共享 --^> 勾选 “允许其他网络用户通过此计算机的 Internet 连接来连接” 然后选择 “无线网络连接 2” --^> 确定
 	echo.
-	echo 按下任意键退出...
-	pause > nul
-	cls
-	exit
+	goto end
 ) else (
 	cls
 	color CF
@@ -512,45 +529,9 @@ if %errorlevel%==0 (
 	echo        │      Wifi热点创建失败    │
 	echo        │                          │
 	echo        └—————————————┘
-	echo 按下任意键退出...
-	pause > nul
-	cls
-	exit
+	goto end
 )
 
-:start
-netsh wlan start hostednetwork
-if %errorlevel%==0 (
-	cls
-	color 2F
-	echo.
-	echo.
-	echo        ┌—————————————┐
-	echo        │                          │
-	echo        │      Wifi热点启动成功    │
-	echo        │                          │
-	echo        └—————————————┘
-	echo 按下任意键退出...
-	pause > nul
-	cls
-	exit
-) else (
-	cls
-	color CF
-	echo.
-	echo.
-	echo        ┌—————————————┐
-	echo        │                          │
-	echo        │      Wifi热点启动失败    │
-	echo        │                          │
-	echo        └—————————————┘
-	echo 按下任意键退出...
-	pause > nul
-	cls
-	exit
-)
-
-
-REM total lines: 556
-REM total character include spaces: 15477
+REM total lines: 537
+REM total character include spaces: 14932
 REM Not Bad :/
