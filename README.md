@@ -8,21 +8,9 @@
 
 Q&A:
 
-Q: 你有妹妹吗？
-<br>
-A: 没有，如果你有的话就恭喜你 还有 德国骨科 <img src="https://static.mengniang.org/common/7/71/%E6%BB%91%E7%A8%BD%E8%A1%A8%E6%83%85.jpg" alt="（滑稽）" height="23" width="23">
-
-<br>
-
-Q: 你愿意嫁给我码？
-<br>
-A: 不存在的
-
-<br>
-
 Q: 这程序是跨平台的吗？
 <br>
-A: 这<b>不是</b>跨平台的程序 只支持Windows。因为里面的指令集只支持Windows，还有我并不知道其他系统支不支持VBS脚本
+A: 这<b>不是</b>跨平台的程序 只支持Windows，因为里面的指令集只支持Windows。最好使用Windows 7系列
 
 <br>
 
@@ -34,7 +22,7 @@ A: 现在只支持简体中文的Windows
 
 Q: 现在支持什么Windows版本？
 <br>
-A: Windows XP以及以上 （前提是你的电脑必须支持无线网络，承载网络模式，有Certutil和Netsh）
+A: Windows XP以及以上 （前提是你的电脑必须支持无线网络，承载网络模式，和Netsh）
 
 <br>
 
